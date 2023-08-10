@@ -16,12 +16,19 @@ const TodoList = () => {
       .get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
       .then((res) => res.data);
 
-  const { data: todos } = useQuery({
+  // we add the type of the error cause react query doesn't know the type of the error that might happen(deps on the library)
+  const {
+    data: todos,
+    error,
+    isLoading,
+  } = useQuery<Todo[], Error>({
     // the data will be accessible in the cache via this key
     queryKey: ["todos"],
     queryFn: fetchTodos,
   });
-  // if (error) return <p>{error}</p>;
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
   return (
     <ul className="list-group">
       {todos?.map((todo) => (
