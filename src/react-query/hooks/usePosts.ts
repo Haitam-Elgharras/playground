@@ -7,20 +7,28 @@ export interface Post {
   body: string;
   userId: number;
 }
-
-const usePosts = (userId: number | undefined) =>
+interface PostQuery {
+  // userId?: number;
+  page: number;
+  pageSize: number;
+}
+// userId: number | undefined
+const usePosts = (query: PostQuery) =>
   useQuery<Post[], Error>({
-    // just to structure the cache. it's like endpoints users/1/posts
-    queryKey: userId ? ["users", userId, "posts"] : ["posts"],
+    // just to structure the cache and make a deps. it's like endpoints users/1/posts
+    //any time a deps change, react-query will refetch the data
+    queryKey: ["posts", query],
     queryFn: () =>
       axios
         .get<Post[]>("https://jsonplaceholder.typicode.com/posts", {
           params: {
-            userId,
+            _start: (query.page - 1) * query.pageSize,
+            _limit: query.pageSize,
           },
         })
         .then((res) => res.data),
     staleTime: 10 * 1000,
+    keepPreviousData: true,
   });
 
 export default usePosts;
