@@ -20,6 +20,7 @@ const useTodos = () => {
     // the data will be accessible in the cache via this key
     queryKey: ["todos"],
     queryFn: fetchTodos,
+    staleTime: 10 * 1000,
   });
 };
 
