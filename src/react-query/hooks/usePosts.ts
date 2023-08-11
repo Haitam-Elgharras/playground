@@ -8,12 +8,17 @@ export interface Post {
   userId: number;
 }
 
-const usePosts = () =>
+const usePosts = (userId: number | undefined) =>
   useQuery<Post[], Error>({
-    queryKey: ["posts"],
+    // just to structure the cache. it's like endpoints users/1/posts
+    queryKey: userId ? ["users", userId, "posts"] : ["posts"],
     queryFn: () =>
       axios
-        .get<Post[]>("https://jsonplaceholder.typicode.com/posts")
+        .get<Post[]>("https://jsonplaceholder.typicode.com/posts", {
+          params: {
+            userId,
+          },
+        })
         .then((res) => res.data),
     staleTime: 10 * 1000,
   });
