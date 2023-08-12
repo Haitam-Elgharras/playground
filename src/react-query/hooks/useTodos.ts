@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { CACHE_KEY_TODOS } from "../constants";
 
 export interface Todo {
   id: number;
@@ -18,7 +19,7 @@ const useTodos = () => {
   // we add the type of the error cause react query doesn't know the type of the error that might happen(deps on the library)
   return useQuery<Todo[], Error>({
     // the data will be accessible in the cache via this key
-    queryKey: ["todos"],
+    queryKey: CACHE_KEY_TODOS,
     queryFn: fetchTodos,
     staleTime: 10 * 1000,
   });
