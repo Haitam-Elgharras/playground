@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { CACHE_KEY_TODOS } from "../constants";
+import APIClient from "../services/api-client";
+
+const apiClient = new APIClient<Todo>("/todos");
 
 export interface Todo {
   id: number;
@@ -10,17 +12,11 @@ export interface Todo {
 }
 
 const useTodos = () => {
-  //just a call back to use with react query
-  const fetchTodos = () =>
-    axios
-      .get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => res.data);
-
   // we add the type of the error cause react query doesn't know the type of the error that might happen(deps on the library)
   return useQuery<Todo[], Error>({
     // the data will be accessible in the cache via this key
     queryKey: CACHE_KEY_TODOS,
-    queryFn: fetchTodos,
+    queryFn: apiClient.getAll,
     staleTime: 10 * 1000,
   });
 };
