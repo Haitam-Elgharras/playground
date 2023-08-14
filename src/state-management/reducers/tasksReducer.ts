@@ -3,12 +3,12 @@ export interface Task {
   title: string;
 }
 
-interface TaskActoin {
+export interface TaskAction {
   type: "ADD" | "DELETE";
   payload: Task | number;
 }
 
-const tasksReducer = (state: Task[], action: TaskActoin): Task[] => {
+const tasksReducer = (state: Task[], action: TaskAction): Task[] => {
   switch (action.type) {
     case "ADD":
       return [...state, action.payload as Task];

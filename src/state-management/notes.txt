@@ -4,3 +4,10 @@
    Reuse our state with multiple components.
    Centralize our state logic.
    Better separation of concerns.
+
+   -when creating a Reducer if a prop inside the action can be undefined it's likely obligatory to create two interfaces:
+
+
+
+  2- React Context:
+   -Context allows sharing data through the component tree without having to pass props down manually at every level.

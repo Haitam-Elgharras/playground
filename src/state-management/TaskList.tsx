@@ -1,8 +1,9 @@
-import { useReducer, useState } from "react";
-import tasksReducer, { Task } from "./reducers/tasksReducer";
+import { useContext, useReducer } from "react";
+import tasksReducer from "./reducers/tasksReducer";
+import TasksContext from "./contexts/tasksContext";
 
 const TaskList = () => {
-  const [tasks, dispatch] = useReducer(tasksReducer, []);
+  const { tasks, dispatch } = useContext(TasksContext);
   return (
     <>
       <button
@@ -11,7 +12,10 @@ const TaskList = () => {
         onClick={() =>
           dispatch({
             type: "ADD",
-            payload: { id: Date.now(), title: "Task" + Date.now() },
+            payload: {
+              id: Date.now(),
+              title: "Task" + Date.now(),
+            },
           })
         }
         className="btn btn-primary my-3"
