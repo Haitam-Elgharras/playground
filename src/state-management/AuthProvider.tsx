@@ -1,5 +1,5 @@
 import { ReactNode, useReducer } from "react";
-import authContext from "./contexts/authContext";
+import AuthContext from "./contexts/authContext";
 import authReducer from "./reducers/authReducer";
 
 interface Props {
@@ -8,9 +8,9 @@ interface Props {
 const AuthProvider = ({ children }: Props) => {
   const [user, disptach] = useReducer(authReducer, "");
   return (
-    <authContext.Provider value={{ user, disptach }}>
+    <AuthContext.Provider value={{ user, disptach }}>
       {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
