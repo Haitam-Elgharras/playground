@@ -11,3 +11,8 @@
 
   2- React Context:
    -Context allows sharing data through the component tree without having to pass props down manually at every level.
+   -The steps to share state using React Context are:
+     1-Left the state up to the closest parent.
+     2-Create a context.(track for transporting data)
+     3-Set up a provider to wrap the parent component and set the context value.
+     4- acess state using the context hook.

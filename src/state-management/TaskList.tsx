@@ -1,16 +1,18 @@
 import { useContext, useReducer } from "react";
-import tasksReducer from "./reducers/tasksReducer";
 import TasksContext from "./contexts/tasksContext";
+import authContext from "./contexts/authContext";
 
 const TaskList = () => {
-  const { tasks, dispatch } = useContext(TasksContext);
+  const { tasks, disptach } = useContext(TasksContext);
+  const { user } = useContext(authContext);
   return (
     <>
+      <p>User: {user}</p>
       <button
         // we passed just the value for the action property
         // the state is managed by the reducer
         onClick={() =>
-          dispatch({
+          disptach({
             type: "ADD",
             payload: {
               id: Date.now(),
@@ -31,7 +33,7 @@ const TaskList = () => {
             <span className="flex-grow-1">{task.title}</span>
             <button
               className="btn btn-outline-danger"
-              onClick={() => dispatch({ type: "DELETE", payload: task.id })}
+              onClick={() => disptach({ type: "DELETE", payload: task.id })}
             >
               Delete
             </button>
