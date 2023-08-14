@@ -1,5 +1,4 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import apiClient from "../services/api-client";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 export interface Post {

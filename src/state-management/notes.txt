@@ -1,0 +1,6 @@
+1- Reducers:
+ -Reducer is a function that allows us to centralize state updates in a component.
+ -it will help us to:
+   Reuse our state with multiple components.
+   Centralize our state logic.
+   Better separation of concerns.
