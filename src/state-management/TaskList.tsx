@@ -1,21 +1,18 @@
-import { useState } from 'react';
-
-interface Task {
-  id: number;
-  title: string;
-}
+import { useReducer, useState } from "react";
+import tasksReducer, { Task } from "./reducers/tasksReducer";
 
 const TaskList = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-
+  const [tasks, dispatch] = useReducer(tasksReducer, []);
   return (
     <>
       <button
+        // we passed just the value for the action property
+        // the state is managed by the reducer
         onClick={() =>
-          setTasks([
-            { id: Date.now(), title: 'Task ' + Date.now() },
-            ...tasks,
-          ])
+          dispatch({
+            type: "ADD",
+            payload: { id: Date.now(), title: "Task" + Date.now() },
+          })
         }
         className="btn btn-primary my-3"
       >
@@ -30,9 +27,7 @@ const TaskList = () => {
             <span className="flex-grow-1">{task.title}</span>
             <button
               className="btn btn-outline-danger"
-              onClick={() =>
-                setTasks(tasks.filter((t) => t.id !== task.id))
-              }
+              onClick={() => dispatch({ type: "DELETE", payload: task.id })}
             >
               Delete
             </button>
