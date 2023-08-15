@@ -5,7 +5,7 @@
    Centralize our state logic.
    Better separation of concerns.
 
-   -when creating a Reducer if a prop inside the action can be undefined it's likely obligatory to create two interfaces:
+   -when creating a Reducer if a prop inside the action can be undefined it's likely obligatory to create two interfaces.
 
 
 

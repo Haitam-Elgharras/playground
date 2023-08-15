@@ -6,9 +6,9 @@ interface Props {
   children: ReactNode;
 }
 const AuthProvider = ({ children }: Props) => {
-  const [user, disptach] = useReducer(authReducer, "");
+  const [user, dispatch] = useReducer(authReducer, "");
   return (
-    <AuthContext.Provider value={{ user, disptach }}>
+    <AuthContext.Provider value={{ user, dispatch }}>
       {children}
     </AuthContext.Provider>
   );
