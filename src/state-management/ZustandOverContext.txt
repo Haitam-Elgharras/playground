@@ -16,8 +16,8 @@ Preventing Unnecessary Rerenders:
 Zustand: Zustand's internal optimizations automatically prevent unnecessary rerenders. Only components that explicitly use the state
  they're subscribing to will be updated.
 
-Context: As discussed earlier, when data in a context changes, all components under that context may rerender, potentially causing
- unnecessary updates.
+Context: As discussed earlier, when any prop of the context provider changes, the entire tree of consumers will rerender. This can lead
+ to unnecessary rerenders.
 
 #Performance:
 

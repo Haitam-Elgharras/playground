@@ -1,7 +1,10 @@
+import useAuthStore from "../auth/store";
 import useCounterStore from "./store";
 
 const Counter = () => {
   const { counter, increment, reset } = useCounterStore();
+
+  console.log("the counter rerendered");
   return (
     <div>
       Counter ({counter})

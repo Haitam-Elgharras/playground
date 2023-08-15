@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import TasksContext from "./tasksContext";
-import useAuth from "../auth/useAuth";
+import useAuthStore from "../auth/store";
 
 const TaskList = () => {
   // if we use this hook in other place, we need to define it as a custom hook
   const useTasks = () => useContext(TasksContext);
 
   const { tasks, dispatch } = useTasks();
-  const { user } = useAuth();
+  const { user } = useAuthStore();
   return (
     <>
       <p>User: {user}</p>
