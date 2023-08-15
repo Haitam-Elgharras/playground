@@ -16,3 +16,16 @@
      2-Create a context.(track for transporting data)
      3-Set up a provider to wrap the parent component and set the context value.
      4- acess state using the context hook.
+
+    -A context should only hold values that are closely related and tend to change together.
+     cause every time the context value changes, all components that use that context will re-render.
+    -So to minimize Renders we must split up our context into smaller and focused ones, each having a single respo.
+
+    -When to use Context:
+      - Use context for Client-side (UI), avoid using it for server-side data.
+      - Use React Query for server-side data.
+
+    -When to use state tool management:
+    well, the best way to manage server data is using React Query. and now we still need just a way to manage our UI state.
+    * Many apps don't have much client state: in this case use just local states and share it with context(Reducer).
+    * Last way use a simpler state management tool like Zustand or Jotai, to have more control over your state.
